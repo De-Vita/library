@@ -21,11 +21,19 @@ public class BookRepository {
         return sql.selectList("Book.findAll");
     }
 
-    public BookDTO detail(Long id) {
-        return sql.selectOne("Book.detail", id);
+    public BookDTO findById(Long id) {
+        return sql.selectOne("Book.findById", id);
     }
 
-    public int delete(Long id) {
-        return sql.delete("Book.delete", id);
+//    public int delete(Long id) {
+//        return sql.delete("Book.delete", id);
+//    }
+
+    public void update(BookDTO bookDTO) {
+        sql.update("Book.update", bookDTO);
+    }
+
+    public void delete(Long id) {
+        sql.delete("Book.delete", id);
     }
 }

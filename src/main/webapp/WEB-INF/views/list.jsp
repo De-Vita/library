@@ -12,40 +12,46 @@
     <title>Title</title>
 </head>
 <body>
-    <h2>list.jsp</h2>
-    <table>
+<h2>list.jsp</h2>
+<table style="text-align: center">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>조회</th>
+        <th>조회(js)</th>
+        <th>수정</th>
+    </tr>
+    <c:forEach items="${bookList}" var="b">
         <tr>
-            <th>id</th>
-            <th>name</th>
-<%--            <th>publisher</th>--%>
-<%--            <th>author</th>--%>
-<%--            <th>price</th>--%>
-            <th>조회</th>
+            <td>${b.id}</td>
+            <td>
+                <a href="/detail?id=${b.id}">${b.bookName}</a>
+            </td>
+            <td>
+                <a href="/detail?id=${b.id}">조회</a>
+            </td>
+            <td>
+                <button onclick="detail_book('${b.id}')">조회</button>
+            </td>
+            <td>
+                <button onclick="update_book('${b.id}')">수정</button>
+            </td>
+            <td>
+                <button onclick="delete_book('${b.id}')">삭제</button>
+            </td>
         </tr>
-        <c:forEach items="${bookList}" var="b">
-            <tr>
-                <td>${b.id}</td>
-                <td>${b.bookName}</td>
-                <td>${b.bookPublisher}</td>
-<%--                <td>${b.bookAuthor}</td>--%>
-<%--                <td>${b.bookPrice}</td>--%>
-                <td>
-                    <%-- 상세조회를 위한 요청 주소: detail
-                         같이 보내줘야 하는 값: id
-                         detail 요청을 처리하는 컨트롤러 메서드를 만들고
-                         조회결과를 detail.jsp에 출력하자.
-                         BookRepository에서는 sql.selectOne() 을 사용하고
-                         mapper에서는 parameterType = "Long"으로 주고
-                         resultType="book"으로 하면 됩니다.
-                          --%>
-                    <a href="/detail?id=${b.id}">조회</a>
-                </td>
-                <td>
-                    <a href="/delete?id=${b.id}">삭제</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
-
+    </c:forEach>
+</table>
 </body>
+<script>
+    const detail_book = (id) => {
+        location.href = "/detail?id="+id;
+    }
+    const update_book = (id) => {
+        location.href = "/update?id="+id;
+    }
+    const delete_book = (id) => {
+        location.href = "/delete?id="+id;
+    }
+</script>
 </html>

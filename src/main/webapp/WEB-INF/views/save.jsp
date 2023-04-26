@@ -19,5 +19,6 @@
         <input type="text" name="bookPrice" placeholder="정가"> <br>
         <input type="submit" value="등록">
     </form>
+    <a href="/">인덱스로가기</a>
 </body>
 </html>

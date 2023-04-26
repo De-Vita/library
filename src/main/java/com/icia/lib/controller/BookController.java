@@ -54,17 +54,41 @@ public class BookController {
     }
 
     @GetMapping("/detail")
-    public String detail(@RequestParam("id") Long id, Model model) {
-        BookDTO bookDTO = bookService.detail(id);
-        model.addAttribute("bookDetail", bookDTO);
+    public String findById(@RequestParam("id") Long id, Model model) {
+        BookDTO bookDTO = bookService.findById(id);
+        model.addAttribute("book", bookDTO);
         return "detail";
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam("id") Long id, Model model) {
-        int i = bookService.delete(id);
-        model.addAttribute("delete", id);
-        return "deleteOk";
+    // 수정화면 출력
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model) {
+        BookDTO bookDTO = bookService.findById(id);
+        model.addAttribute("book", bookDTO);
+        return "update";
     }
+
+    // 수정처리
+    @PostMapping("/update")
+    public String update(@ModelAttribute BookDTO bookDTO) {
+        bookService.update(bookDTO);
+        // 수정이 완료되면 상세페이지를 다시 출력
+        // redirect 요청: 다른 컨트롤러 메서드의 주소를 요청(jsp 페이지 이름을 리턴하는 것이 아님)
+        return "redirect:/detail?id="+bookDTO.getId();
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        bookService.delete(id);
+        // 삭제 처리 후 목록 출력
+        return "redirect:/list";
+    }
+
+//    @GetMapping("/delete")
+//    public String delete(@RequestParam("id") Long id, Model model) {
+//        int i = bookService.delete(id);
+//        model.addAttribute("delete", id);
+//        return "deleteOk";
+//    }
     
 }

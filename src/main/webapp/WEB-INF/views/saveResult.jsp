@@ -13,7 +13,7 @@
         const result = ${result};
         console.log(result);
         if (result > 0) {
-            alert("신규 도서 등록 성공! index로 돌아갑니다!");
+            alert("신규 도서 등록 성공!");
             location.href = "/list";
         } else {
             alert("뭘 잘못했냐 내가");

@@ -12,7 +12,7 @@
 </head>
 <body>
 <h2>detail.jsp</h2>
-<table>
+<table style="text-align: center">
   <tr>
     <th>id</th>
     <th>name</th>
@@ -21,12 +21,13 @@
     <th>price</th>
   </tr>
   <tr>
-    <td>${bookDetail.id}</td>
-    <td>${bookDetail.bookName}</td>
-    <td>${bookDetail.bookPublisher}</td>
-    <td>${bookDetail.bookAuthor}</td>
-    <td>${bookDetail.bookPrice}</td>
+    <td>${book.id}</td>
+    <td>${book.bookName}</td>
+    <td>${book.bookPublisher}</td>
+    <td>${book.bookAuthor}</td>
+    <td>${book.bookPrice}</td>
   </tr>
 </table>
+
 </body>
 </html>

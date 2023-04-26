@@ -26,13 +26,20 @@ public class BookService {
         }
     }
 
-    public BookDTO detail(Long id) {
-        BookDTO bookDTO = bookRepository.detail(id);
-        return bookDTO;
+    public BookDTO findById(Long id) {
+        return bookRepository.findById(id);
     }
 
-    public int delete(Long id) {
-        int i = bookRepository.delete(id);
-        return i;
+//    public int delete(Long id) {
+//        int i = bookRepository.delete(id);
+//        return i;
+//    }
+
+    public void update(BookDTO bookDTO) {
+        bookRepository.update(bookDTO);
+    }
+
+    public void delete(Long id) {
+        bookRepository.delete(id);
     }
 }
